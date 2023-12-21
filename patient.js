@@ -4,14 +4,14 @@
 // Kiểm tra trạng thái đăng nhập khi truy cập trang
 
 
-async function displayAvailableDentist(appointmentDate, appointmentTime) { 
+async function displayAvailableDentist(appointmentDate, appointmentTime) {
   try {
     const response = await fetch('http://localhost:3000/displayAvailableDentist', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({appointmentDate, appointmentTime})
+      body: JSON.stringify({ appointmentDate, appointmentTime })
     })
     const data = await response.json()
     // Xử lý dữ liệu nhận được từ server
@@ -21,18 +21,18 @@ async function displayAvailableDentist(appointmentDate, appointmentTime) {
       data.forEach(dentist => {
         const option = document.createElement('option');
         option.value = dentist.dentistUserName;
-        option.textContent = dentist.dentistFullName;      
+        option.textContent = dentist.dentistFullName;
         displayAvailableDentist.appendChild(option);
       });
     } else {
-       const option = document.createElement('option');
-       option.textContent = ' ';
-       displayAvailableDentist.appendChild(option);
+      const option = document.createElement('option');
+      option.textContent = ' ';
+      displayAvailableDentist.appendChild(option);
     }
-  } catch(error) {
-      console.error('Có lỗi xảy ra:', error);
+  } catch (error) {
+    console.error('Có lỗi xảy ra:', error);
   };
- 
+
 }
 
 async function scheduleAppointment(patientPhoneNumber, appointmentDate, appointmentTime, dentistUserName) {
@@ -42,7 +42,7 @@ async function scheduleAppointment(patientPhoneNumber, appointmentDate, appointm
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({patientPhoneNumber,appointmentDate,appointmentTime,dentistUserName})
+      body: JSON.stringify({ patientPhoneNumber, appointmentDate, appointmentTime, dentistUserName })
     })
     const data = await response.json();
     const scheduleAppointmentResult = document.getElementById('scheduleAppointmentResult');
@@ -52,7 +52,7 @@ async function scheduleAppointment(patientPhoneNumber, appointmentDate, appointm
     } else if (response.status === 401) {
       const date = new Date(data.appointmentDate);
       const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-      const time = new Date(data.appointmentTime); 
+      const time = new Date(data.appointmentTime);
       const formattedTime = `${time.getUTCHours().toString().padStart(2, '0')}:${time.getUTCMinutes().toString().padStart(2, '0')}`;
       scheduleAppointmentResult.innerHTML = `  
                                         <h3>Bạn đã có lịch hẹn vào thời gian này:</h3>
@@ -65,9 +65,9 @@ async function scheduleAppointment(patientPhoneNumber, appointmentDate, appointm
     } else if (response.status === 500) {
       scheduleAppointmentResult.innerHTML = data.message;
     }
-  } catch(error) {
-        console.error('Có lỗi xảy ra:', error);
-  };     
+  } catch (error) {
+    console.error('Có lỗi xảy ra:', error);
+  };
 }
 
 async function getAllAppointmentsInfo(patientPhoneNumber) {
@@ -77,33 +77,76 @@ async function getAllAppointmentsInfo(patientPhoneNumber) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ patientPhoneNumber }) 
+      body: JSON.stringify({ patientPhoneNumber })
     })
     const data = await response.json();
     const getAllAppointmentsInfoResult = document.getElementById('getAllAppointmentsInfoResult');
     getAllAppointmentsInfoResult.innerHTML = '';
     if (response.status === 200) {
+      // Assuming you have a table element with the id 'appointmentsTable' in your HTML
+      const appointmentsTable = document.createElement('appointmentsTable');
+      appointmentsTable.id = 'appointmentsTable'
+
+      // Create table header
+      const headerRow = document.createElement('tr');
+      headerRow.innerHTML = `
+  <th>Appointment ID</th>
+  <th>Patient Phone Number</th>
+  <th>Appointment Date</th>
+  <th>Appointment Time</th>
+  <th>Dentist Full Name</th>
+`;
+
+      appointmentsTable.appendChild(headerRow);
+
+      // Iterate through the appointments data
       data.forEach(appointment => {
-      const date = new Date(appointment.appointmentDate);
-      const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-      const time = new Date(appointment.appointmentTime); 
-      const formattedTime = `${time.getUTCHours().toString().padStart(2, '0')}:${time.getUTCMinutes().toString().padStart(2, '0')}`;
-      const getAllAppointmentsInfoDetails = document.createElement('p');
-      getAllAppointmentsInfoDetails.textContent = `
-                                        Appointment ID: ${appointment.appointmentId},
-                                        Patient phone number : ${appointment.patientPhoneNumber}, 
-                                        Appointment date: ${formattedDate},
-                                        Appointment time: ${formattedTime},
-                                        Dentist full name: ${appointment.dentistFullName}
-                                        `; 
-      getAllAppointmentsInfoResult.appendChild(getAllAppointmentsInfoDetails);
+        const date = new Date(appointment.appointmentDate);
+        const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
+        const time = new Date(appointment.appointmentTime);
+        const formattedTime = `${time.getUTCHours().toString().padStart(2, '0')}:${time.getUTCMinutes().toString().padStart(2, '0')}`;
+
+        // Create a new row for each appointment
+        const row = document.createElement('tr');
+        row.innerHTML = `
+    <td>${appointment.appointmentId}</td>
+    <td>${appointment.patientPhoneNumber}</td>
+    <td>${formattedDate}</td>
+    <td>${formattedTime}</td>
+    <td>${appointment.dentistFullName}</td>
+  `;
+
+        // Append the row to the table
+        appointmentsTable.appendChild(row);
       });
+      getAllAppointmentsInfoResult.appendChild(appointmentsTable)
     } else {
       getAllAppointmentsInfoResult.innerHTML = data.message;
     }
-  } catch (error)  {
+  } catch (error) {
     console.error('Có lỗi xảy ra khi lấy thông tin lịch hẹn', error);
   };
 }
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 
-module.exports =  { displayAvailableDentist, scheduleAppointment, getAllAppointmentsInfo };
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+module.exports = { displayAvailableDentist, scheduleAppointment, getAllAppointmentsInfo, openTab, openModal, closeModal };

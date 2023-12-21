@@ -13,46 +13,49 @@
 <body>
     <h1>PATIENT PAGE</h1>
 
-    <button id="getPatientInfoButton">Personal information</button>
-    <div id="getPatientInfo"></div>
-
-    
-    <!-- Form đặt lịch hẹn -->
-    <h2>Schedule appointment</h2>
-    <form id="appointmentForm">
-        <label for="appointmentDate">Appointment date:</label>
-        <input type="date" id="appointmentDate" name="appointmentDate" required><br><br>
-
-        <label for="appointmentTime">Appointment time:</label>
-        <input type="time" id="appointmentTime" name="appointmentTime" required><br><br>
-        
-        
-        <input id="checkAvailableDentist" type="submit" value="Check available dentists">
-    </form>
-
-    <select id="displayAvailableDentist" name="displayAvailableDentist" required></select><br><br>
-
-    <button id="confirmScheduleButton"> Schedule appointment </button>
-
-    <!-- Kết quả đặt lịch hẹn -->
-    <div id="scheduleAppointmentResult"></div>
-
-    <!-- Thông tin lịch hẹn -->
-    <h2>All appointments information</h2>
-    <button id="getAllAppointmentsInfoButton">Get all appointments info</button>
-    <div id="getAllAppointmentsInfoResult"></div>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-        <!-- Nội dung modal -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'personalInfo')">Personal Information</button>
+        <button class="tablinks" onclick="openTab(event, 'scheduleAppointment')">Schedule Appointment</button>
+        <button class="tablinks" onclick="openTab(event, 'allAppointmentsInfo')">All Appointments Info</button>
+      </div>
+      
+      <div id="personalInfo" class="tabcontent">
+        <h2>PATIENT PAGE</h2>
+        <button id="getPatientInfoButton">Personal Information</button>
+        <div id="getPatientInfo"></div>
+      </div>
+      
+      <div id="scheduleAppointment" class="tabcontent">
+        <h2>Schedule Appointment</h2>
+        <form id="appointmentForm">
+          <label for="appointmentDate">Appointment date:</label>
+          <input type="date" id="appointmentDate" name="appointmentDate" required><br><br>
+      
+          <label for="appointmentTime">Appointment time:</label>
+          <input type="time" id="appointmentTime" name="appointmentTime" required><br><br>
+      
+          <input id="checkAvailableDentist" type="submit" value="Check available dentists">
+        </form>
+        <select id="displayAvailableDentist" name="displayAvailableDentist" required></select><br><br>
+        <button id="confirmScheduleButton"> Schedule appointment </button>
+        <div id="scheduleAppointmentResult"></div>
+      </div>
+      
+      <div id="allAppointmentsInfo" class="tabcontent">
+        <h2>All Appointments Information</h2>
+        <button id="getAllAppointmentsInfoButton">Get all appointments info</button>
+        <div id="getAllAppointmentsInfoResult"></div>
+      </div>
+      
+      <div id="myModal" class="modal">
         <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Xác nhận thông tin đặt lịch</h2>
-        <p id="confirmationInfo">Thông tin đặt lịch:</p>
-        <button id="confirmButton">Xác nhận</button>
-        <button id="backButton">Quay lại</button>
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>Confirmation Information</h2>
+          <p id="confirmationInfo">Information:</p>
+          <button id="confirmButton" onclick="confirmAction()">Confirm</button>
+          <button id="backButton" onclick="closeModal()">Go Back</button>
         </div>
-    </div>
+      </div>
   
     <script> 
 
