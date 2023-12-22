@@ -118,9 +118,7 @@ async function updatePatientInfo() {
 
   const patientUpdateResult = document.getElementById('patientUpdateResult');
   const enterPatientPhoneNumber = document.getElementById('enterPatientPhoneNumber').value;
-  const patientFullName = document.getElementById('updatePatientFullName').value;
-  const updatePatientPhoneNumber = document.getElementById('updatePatientPhoneNumber').value;
-  const patientPassword = document.getElementById('updatePatientPassword').value;
+  const patientFullName = document.getElementById('updatePatientFullName').value;  const patientPassword = document.getElementById('updatePatientPassword').value;
   const patientDateOfBirth = document.getElementById('updatePatientDateOfBirth').value;
   const patientAddress = document.getElementById('updatePatientAddress').value;
 
@@ -130,7 +128,7 @@ async function updatePatientInfo() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ enterPatientPhoneNumber, patientFullName, updatePatientPhoneNumber, patientPassword, patientDateOfBirth, patientAddress })
+      body: JSON.stringify({ enterPatientPhoneNumber, patientFullName, patientPassword, patientDateOfBirth, patientAddress })
     })
     const data = await response.json();
     if (response.status === 200) {
@@ -274,4 +272,22 @@ async function addMedicalRegisterForm(patientFullName, medicalPatientPhoneNumber
 //   };
 // }
 
-module.exports = { getAllPatientsInfo, getPatientInfo, updatePatientInfo, addPatientInfo, deletePatientInfo, displayAvailableDentist, addMedicalRegisterForm, getUnpaidReceiptInfo };
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+module.exports = { getAllPatientsInfo, getPatientInfo, updatePatientInfo, addPatientInfo, deletePatientInfo, displayAvailableDentist, addMedicalRegisterForm, getUnpaidReceiptInfo, openTab, closeModal };
