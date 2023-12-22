@@ -1,26 +1,29 @@
 var express = require('express');
 var app = express();
-var bodyParser =require('body-parser');
+var bodyParser = require('body-parser');
 const sql = require('mssql');
 const conn = require('connect');
 // Cấu hình kết nối đến SQL Server
 const config = {
   user: 'sa',
   password: '123456',
-  server: 'DESKTOP-HDDTSF3\\SQLEXPRESS',
-  database: 'QLNhaKhoa',
+  server: 'LAPTOP-UFHV2KPG',
+  database: 'QLNhaKhoa1',
   options: {
-    trustedConnection:true,
+    trustedConnection: true,
     trustServerCertificate: true,
   },
   driver: 'SQL Server'
 };
 
 const connn = new sql.ConnectionPool(config).connect().then(pool => {
-    return pool;
+  console.log(pool)
+  return pool;
 });
 
+console.log(connn)
+
 module.exports = {
-    conn: connn,
-    sql: sql
+  conn: connn,
+  sql: sql
 }
