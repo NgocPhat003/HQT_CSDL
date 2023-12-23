@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-QLNhaKhoa_log",
+      "appliesTo": "QLNhaKhoa_log.ldf",
+      "type": "launch"
+    }
+  ]
+}

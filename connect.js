@@ -1,16 +1,16 @@
 var express = require('express');
 var app = express();
-var bodyParser =require('body-parser');
+var bodyParser = require('body-parser');
 const sql = require('mssql');
 const conn = require('connect');
 // Cấu hình kết nối đến SQL Server
 const config = {
   user: 'sa',
   password: '123456',
-  server: 'DESKTOP-HDDTSF3\\SQLEXPRESS',
+  server: 'DESKTOP-8ID1E1D',
   database: 'QLNhaKhoa',
   options: {
-    trustedConnection:true,
+    trustedConnection: true,
     trustServerCertificate: true,
   },
   driver: 'SQL Server'
