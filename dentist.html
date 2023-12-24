@@ -9,21 +9,27 @@
   <link rel="stylesheet" href="dentist.css">
 </head>
 <body>
-    <h1>DENTIST PAGE</h1>
+    <div class="header"><h1>DENTIST PAGE</h1></div>
 
-    <h2>Add patient medical record</h2>
-    <form id="addPatientMedicalRecordForm">
-      <label for="addPatientPhoneNumber">Patient phone number:</label>
-      <input type="text" id="addPatientPhoneNumber" name="addPatientPhoneNumber" required><br><br>
-    
-      <label for="addExaminationDate">Examination date:</label>
-      <input type="date" id="addExaminationDate" name="addExaminationDate" required><br><br>
-
-      <label for="addExaminationTime">Examination time:</label>
-      <input type="time" id="addExaminationTime" name="addExaminationTime" required><br><br>
-
-      <input type="submit" value="Add services and drugs">
-    </form>
+    <div class="manageRecord">
+      <h2>Add patient medical record</h2>
+      <form id="addPatientMedicalRecordForm">
+        <div class="form-row">
+          <label for="addPatientPhoneNumber">Patient phone number:</label>
+          <input type="text" id="addPatientPhoneNumber" name="addPatientPhoneNumber" required><br><br>
+        </div>
+      
+        <div class="form-row">
+          <label for="addExaminationDate">Examination date:</label>
+          <input type="date" id="addExaminationDate" name="addExaminationDate" required><br><br>
+        </div>
+        <div class="form-row">
+          <label for="addExaminationTime">Examination time:</label>
+          <input type="time" id="addExaminationTime" name="addExaminationTime" required><br><br>
+        </div>
+        <input type="submit" value="Add services and drugs">
+      </form>
+    </div>
     
     
     <!-- <button id="displaySearchServiceForm" onclick="document.getElementById('searchServiceForm').style.display = 'block'">Thêm dịch vụ</button> -->

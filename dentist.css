@@ -1,11 +1,32 @@
+
+*{
+	padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
 	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
-	background-color: #f4f4f4;
   }
   
-  h2 {
+.header{
+	background-color: #EEEEEE;
+    overflow: hidden;
+    height: 90px;
+	border-block-end: 0.5px solid;
+}
+
+h1{
+	display: flex;
+    flex-shrink: 0;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    width: 100vw;
+    height: 50px;
+}
+
+h2 {
 	color: #333;
   }
   
@@ -29,11 +50,27 @@ body {
 	font-size: 14px;
   }
   
+  .manageRecord{
+	background-color: #EEEEEE;
+    overflow: hidden;
+	padding-left: 20px;
+	padding-top: 25px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+
+
   #addPatientMedicalRecordResult {
-	background-color: #fff;
-	padding: 20px;
-	margin-bottom: 20px;
-	border-radius: 5px;
+	text-align: center;
+	padding-top: 0;
+	margin-right: 100px;
+	text-align: center;
+	background-color: #f6f7f8;
+    border: 1px solid #d6d9dc;
+	border-radius: 3px;
+	padding: 10px;
   }
   
   #checkAppointmentsListByDateResult {
@@ -43,6 +80,37 @@ body {
 	border-radius: 5px;
   }
   
+  input[type="text"]{
+	padding: 8px;
+	margin: 5px;
+	font-size: 14px;
+	background-color: #ffffff;
+    border: 1px solid #d6d9dc;
+    border-radius: 3px;
+	width: 250px;
+    height: initial;
+  }
+
+  .form-row input[type="text"],
+  .form-row input[type="date"],
+  .form-row input[type="time"]{
+	width: 250px;
+    height: initial;
+  }
+
+  .form-row label {
+	text-align: right;
+	width: 120px;
+	margin-top: 7px;
+	padding-right: 20px;
+}
+
+.form-row input[type="date"],
+.form-row input[type="time"]{
+	margin-left: 38px;
+	padding-right: 12px;
+	height: 24px;
+}
 
   #searchServiceForm,
   #searchDrugForm {
