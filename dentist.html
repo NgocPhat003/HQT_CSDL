@@ -29,7 +29,6 @@
         </div>
         <input type="submit" value="Add services and drugs">
       </form>
-    </div>
     
     
     <!-- <button id="displaySearchServiceForm" onclick="document.getElementById('searchServiceForm').style.display = 'block'">Thêm dịch vụ</button> -->
@@ -54,16 +53,17 @@
 
     <button id="confirmAddMedicalRecordButton">Confirm add medical record</button>
     <div id="patientMedicalRecordAddResult"></div>
-    
-    <h2>Check appointments list</h2>
-    <form id="checkAppointmentsListByDateForm"> 
-      <label for="selectedDate">Choose date:</label>
-      <input type="date" id="selectedDate" name="selectedDate" required><br><br>
-
-      <input type="submit" value="Check appointments list">
-    </form>
-    
-    <div id="checkAppointmentsListByDateResult"></div>
+    </div>
+    <div class="check-appointment">
+      <h2>Check appointments list</h2>
+      <form id="checkAppointmentsListByDateForm">
+        <label for="selectedDate">Choose date:</label>
+        <input type="date" id="selectedDate" name="selectedDate" required><br><br>
+        <input type="submit" value="Check appointments list">
+      </form>
+      
+      <div id="checkAppointmentsListByDateResult"></div>
+    </div>
 
     <script>
 
