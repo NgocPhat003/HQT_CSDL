@@ -77,7 +77,7 @@ async function getPatientInfo(patientPhoneNumber) {
       const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
 
       const patientTable = document.createElement('table');
-      patientTable.id = 'patientInfoTable';
+      patientTable.setAttribute('id', 'patientsTable');
 
       const headerRow = document.createElement('tr');
       headerRow.innerHTML = `
@@ -118,7 +118,9 @@ async function updatePatientInfo() {
 
   const patientUpdateResult = document.getElementById('patientUpdateResult');
   const enterPatientPhoneNumber = document.getElementById('enterPatientPhoneNumber').value;
-  const patientFullName = document.getElementById('updatePatientFullName').value;  const patientPassword = document.getElementById('updatePatientPassword').value;
+  const patientFullName = document.getElementById('updatePatientFullName').value;
+  const updatePatientPhoneNumber = document.getElementById('updatePatientPhoneNumber').value;
+  const patientPassword = document.getElementById('updatePatientPassword').value;
   const patientDateOfBirth = document.getElementById('updatePatientDateOfBirth').value;
   const patientAddress = document.getElementById('updatePatientAddress').value;
 
@@ -128,7 +130,7 @@ async function updatePatientInfo() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ enterPatientPhoneNumber, patientFullName, patientPassword, patientDateOfBirth, patientAddress })
+      body: JSON.stringify({ enterPatientPhoneNumber, patientFullName, updatePatientPhoneNumber, patientPassword, patientDateOfBirth, patientAddress })
     })
     const data = await response.json();
     if (response.status === 200) {
@@ -290,4 +292,4 @@ function closeModal() {
   document.getElementById("myModal").style.display = "none";
 }
 
-module.exports = { getAllPatientsInfo, getPatientInfo, updatePatientInfo, addPatientInfo, deletePatientInfo, displayAvailableDentist, addMedicalRegisterForm, getUnpaidReceiptInfo, openTab, closeModal };
+module.exports = { getAllPatientsInfo, getPatientInfo, updatePatientInfo, addPatientInfo, deletePatientInfo, displayAvailableDentist, addMedicalRegisterForm, openTab, closeModal };

@@ -13,7 +13,7 @@
 <body>
 
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'allPatientsInfoTab')">Display, Update, Add, Delete Patient
+    <button class="tablinks" onclick="openTab(event, 'allPatientsInfoTab')">Display All Patient
       Info</button>
     <button class="tablinks" onclick="openTab(event, 'getPatientInfoTab')">Get Patient Info</button>
     <button class="tablinks" onclick="openTab(event, 'updatePatientInfoTab')">Update Patient Info</button>
@@ -22,75 +22,126 @@
     <button class="tablinks" onclick="openTab(event, 'addMedicalRegisterTab')">Add Medical Register Form</button>
   </div>
 
+
   <div id="allPatientsInfoTab" class="tabcontent">
-    <h2>Display Patient Information</h2>
-    <button onclick="getAllPatientsInfo()">Display all patients information</button>
+    <button onclick="getAllPatientsInfo()" style="margin-top:20px">Display all patients information</button>
     <div id="allPatientsInfo">
       <table id="patientsTable"></table>
     </div>
   </div>
 
   <div id="getPatientInfoTab" class="tabcontent">
-    <h2>Get Patient Info</h2>
-    <form id="getPatientInfoForm">
-      <label for="patientPhoneNumber">Patient phone number:</label>
-      <input type="text" id="patientPhoneNumber" name="patientPhoneNumber" required><br><br>
-      <input type="submit" value="Get patient information">
-    </form>
-    <div id="getPatientInfo"></div>
+    <h2>Get patient info</h2>
+      <form id="getPatientInfoForm">
+        <label for="patientPhoneNumber">Patient phone number:</label>
+        <input type="text" id="patientPhoneNumber" name="patientPhoneNumber" required><br><br>
+        <input type="submit" value="Get patient information">
+      </form>
+      <div id="getPatientInfo"></div>
   </div>
 
   <div id="updatePatientInfoTab" class="tabcontent">
-    <h2>Update Patient Information</h2>
-    <form id="update">
-      <label for="enterPatientPhoneNumber">Enter patient phone number:</label>
-      <input type="text" id="enterPatientPhoneNumber" name="enterPatientPhoneNumber" required><br><br>
-      <input type="submit" value="Update">
-    </form>
-    <form id="confirmUpdate">
-      <label for="updatePatientFullName">New patient name:</label>
-      <input type="text" id="updatePatientFullName" name="updatePatientFullName" required><br><br>
 
-      <!-- Add other update fields here -->
+    <h2>Update patient information</h2>
+    <class id="updatePatientInfo">
+      <form id="update">
+        <label for="enterPatientPhoneNumber">Enter patient phone number:</label>
+        <input type="text" id="enterPatientPhoneNumber" name="enterPatientPhoneNumber" required><br><br>
+        <input type="submit" value="Update">
+      </form>
+      <form id="confirmUpdate">
+        <label for="updatePatientFullName">New patient name:</label>
+        <input type="text" id="updatePatientFullName" name="updatePatientFullName" required><br><br>
 
-      <input type="submit" value="Confirm update patient information">
-    </form>
+        <label for="updatePatientPhoneNumber">New patient phone number:</label>
+        <input type="text" id="updatePatientPhoneNumber" name="updatePatientPhoneNumber" required><br><br>
+
+        <label for="updatePatientPassword">New patient password:</label>
+        <input type="text" id="updatePatientPassword" name="updatePatientPassword" required><br><br>
+
+        <label for="updatePatientDateOfBirth">New patient date of birth:</label>
+        <input type="date" id="updatePatientDateOfBirth" name="updatePatientDateOfBirth" required><br><br>
+
+        <label for="updatePatientAddress">New patient address:</label>
+        <input type="text" id="updatePatientAddress" name="updatePatientAddress" required><br><br>
+
+        <input type="submit" value="Confirm update patient information">
+      </form>
+
+    </class>
     <div id="patientUpdateResult"></div>
   </div>
 
   <div id="addPatientInfoTab" class="tabcontent">
-    <h2>Add Patient Information</h2>
+    <h2>Add patient information</h2>
     <form id="addPatientInfoForm">
-      <!-- Add patient information fields here -->
+      <label for="addPatientFullName">Patient name:</label>
+      <input type="text" id="addPatientFullName" name="addPatientFullName" required><br><br>
+
+      <label for="addPatientPhoneNumber">Patient phone number:</label>
+      <input type="text" id="addPatientPhoneNumber" name="addPatientPhoneNumber" required><br><br>
+
+      <label for="addPatientPassword">Patient password:</label>
+      <input type="text" id="addPatientPassword" name="addPatientPassword" required><br><br>
+
+      <label for="addPatientDateOfBirth">Patient date of birth:</label>
+      <input type="date" id="addPatientDateOfBirth" name="addPatientDateOfBirth" required><br><br>
+
+      <label for="addPatientAddress">Patient address:</label>
+      <input type="text" id="addPatientAddress" name="addPatientAddress" required><br><br>
+
       <input type="submit" value="Add patient information">
     </form>
     <div id="patientAddResult"></div>
   </div>
 
   <div id="deletePatientInfoTab" class="tabcontent">
-    <h2>Delete Patient Information</h2>
+    <h2>Delete patient information</h2>
     <form id="deletePatientInfoForm">
       <label for="deletePatientPhoneNumber">Patient phone number:</label>
       <input type="text" id="deletePatientPhoneNumber" name="deletePatientPhoneNumber" required><br><br>
+
       <input type="submit" value="Delete patient information">
     </form>
     <div id="patientDeleteResult"></div>
   </div>
 
   <div id="addMedicalRegisterTab" class="tabcontent">
-    <h2>Add Medical Register Form</h2>
+    <h2>Add medical register form </h2>
     <form id="medicalRegisterForm">
-      <!-- Add medical register form fields here -->
+      <label for="patientFullName">Patient name:</label>
+      <input type="text" id="patientFullName" name="patientFullName" required><br><br>
+
+      <label for="medicalPatientPhoneNumber">Patient phone number:</label>
+      <input type="text" id="medicalPatientPhoneNumber" name="medicalPatientPhoneNumber" required><br><br>
+
+      <label for="patientDateOfBirth">Patient date of birth:</label>
+      <input type="date" id="patientDateOfBirth" name="patientDateOfBirth" required><br><br>
+
+      <label for="patientAddress">Patient address:</label>
+      <input type="text" id="patientAddress" name="patientAddress" required><br><br>
+
+      <label for="appointmentDate">Appointment date:</label>
+      <input type="date" id="appointmentDate" name="appointmentDate" required><br><br>
+
+      <label for="appointmentTime">Appointment time:</label>
+      <input type="time" id="appointmentTime" name="appointmentTime" required><br><br>
+
       <input id="checkAvailableDentist" type="submit" value="Check available dentists">
     </form>
     <select id="displayAvailableDentist" name="displayAvailableDentist" required> </select><br><br>
+
     <button id="confirmAddMedicalRegisterButton"> Add medical register form </button>
+
     <div id="registerMedicalFormResult"></div>
+
     <button id="printMedicalRegisterFormInfoButton">Print medical register form information</button>
   </div>
 
+
   <!-- Modal -->
   <div id="myModal" class="modal">
+    <!-- Nội dung modal -->
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <h2>Xác nhận thông tin đặt lịch</h2>
