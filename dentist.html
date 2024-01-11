@@ -9,26 +9,21 @@
   <link rel="stylesheet" href="dentist.css">
 </head>
 <body>
-    <div class="header"><h1>DENTIST PAGE</h1></div>
+    <h1>DENTIST PAGE</h1>
 
-    <div class="manageRecord">
-      <h2>Add patient medical record</h2>
-      <form id="addPatientMedicalRecordForm">
-        <div class="form-row">
-          <label for="addPatientPhoneNumber">Patient phone number:</label>
-          <input type="text" id="addPatientPhoneNumber" name="addPatientPhoneNumber" required><br><br>
-        </div>
-      
-        <div class="form-row">
-          <label for="addExaminationDate">Examination date:</label>
-          <input type="date" id="addExaminationDate" name="addExaminationDate" required><br><br>
-        </div>
-        <div class="form-row">
-          <label for="addExaminationTime">Examination time:</label>
-          <input type="time" id="addExaminationTime" name="addExaminationTime" required><br><br>
-        </div>
-        <input type="submit" value="Add services and drugs">
-      </form>
+    <h2>Add patient medical record</h2>
+    <form id="addPatientMedicalRecordForm">
+      <label for="addPatientPhoneNumber">Patient phone number:</label>
+      <input type="text" id="addPatientPhoneNumber" name="addPatientPhoneNumber" required><br><br>
+    
+      <label for="addExaminationDate">Examination date:</label>
+      <input type="date" id="addExaminationDate" name="addExaminationDate" required><br><br>
+
+      <label for="addExaminationTime">Examination time:</label>
+      <input type="time" id="addExaminationTime" name="addExaminationTime" required><br><br>
+
+      <input type="submit" value="Add services and drugs">
+    </form>
     
     
     <!-- <button id="displaySearchServiceForm" onclick="document.getElementById('searchServiceForm').style.display = 'block'">Thêm dịch vụ</button> -->
@@ -53,17 +48,16 @@
 
     <button id="confirmAddMedicalRecordButton">Confirm add medical record</button>
     <div id="patientMedicalRecordAddResult"></div>
-    </div>
-    <div class="check-appointment">
-      <h2>Check appointments list</h2>
-      <form id="checkAppointmentsListByDateForm">
-        <label for="selectedDate">Choose date:</label>
-        <input type="date" id="selectedDate" name="selectedDate" required><br><br>
-        <input type="submit" value="Check appointments list">
-      </form>
-      
-      <div id="checkAppointmentsListByDateResult"></div>
-    </div>
+    
+    <h2>Check appointments list</h2>
+    <form id="checkAppointmentsListByDateForm"> 
+      <label for="selectedDate">Choose date:</label>
+      <input type="date" id="selectedDate" name="selectedDate" required><br><br>
+
+      <input type="submit" value="Check appointments list">
+    </form>
+    
+    <div id="checkAppointmentsListByDateResult"></div>
 
     <script>
 
