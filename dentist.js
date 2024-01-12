@@ -251,19 +251,33 @@ async function checkAppointmentsListByDate(dentistUserName,selectedDate) {
         if (response.status === 200) {        
             const checkAppointmentsListByDateResult = document.getElementById('checkAppointmentsListByDateResult');
             checkAppointmentsListByDateResult.innerHTML = '';  
+            const appointmentDetails = document.createElement('table');
+            appointmentDetails.setAttribute('id','Table');
+      
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+            <th>Appointment Id</th>
+            <th>Patient Phone Number</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Dentist</th>;`
+      
+            appointmentDetails.appendChild(headerRow);
+            const row = document.createElement('tr');
             data.forEach(appointment => {
                 const date = new Date(appointment.appointmentDate);
                 const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
                 const time = new Date(appointment.appointmentTime); 
                 const formattedTime = `${time.getUTCHours().toString().padStart(2, '0')}:${time.getUTCMinutes().toString().padStart(2, '0')}`;
                 const checkAppointmentsListByDateResultDeTails = document.createElement('p');
-                checkAppointmentsListByDateResultDeTails.textContent = `
-                                                Appointment ID: ${appointment.appointmentId},
-                                                Patient phone number: ${appointment.patientPhoneNumber},
-                                                Appointment date: ${formattedDate},
-                                                Appointment time: ${formattedTime},
-                                                Dentist full name: ${appointment.dentistFullName}`; 
-
+                row.innerHTML = `<td>${appointment.appointmentId}</td>
+                <td> ${appointment.patientPhoneNumber} </td>
+                <td> ${formattedDate} </td>
+                <td> ${formattedTime} </td>
+                <td>${appointment.dentistUserName}</td>
+                `;
+                appointmentDetails.appendChild(row);
+                checkAppointmentsListByDateResult.appendChild(appointmentDetails);
             checkAppointmentsListByDateResult.appendChild(checkAppointmentsListByDateResultDeTails) 
             });
         } else {
@@ -274,6 +288,20 @@ async function checkAppointmentsListByDate(dentistUserName,selectedDate) {
         console.error('Có lỗi xảy ra:', error);
     }
 }
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
 
 module.exports = { addPatientMedicalRecord , checkAppointmentsListByDate, searchService, searchDrug, addService, addDrug, calculateTotalPrice};

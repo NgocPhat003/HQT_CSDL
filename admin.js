@@ -17,17 +17,36 @@ async function getAllStaffsInfo() {
         const data = await response.json();
         if (response.status === 200) {            
             allStaffsInfo.innerHTML = ''; 
-            data.forEach(staff => {
-            const allStaffsDetails = document.createElement('p');
-            allStaffsDetails.textContent = `
-                                            Staff name: ${staff.staffFullName}, 
-                                            Staff username: ${staff.staffUserName},
-                                            Password: ${staff.staffPassword}`; 
-            allStaffsInfo.appendChild(allStaffsDetails);
-            });
-        } else {
-            allStaffsInfo.innerHTML = data.message;
-        }
+
+      const staffsTable = document.createElement('table');
+      staffsTable.setAttribute('id', 'Table')
+
+      // Create table header
+      const headerRow = document.createElement('tr');
+      headerRow.innerHTML = `
+        <th>Staff User Name</th>
+        <th>Password</th>
+        <th>Staff Name</th>`;
+
+        staffsTable.appendChild(headerRow);
+        
+        data.forEach(staff => {
+          // Create a new row for each staff
+          const row = document.createElement('tr');
+          row.innerHTML = `
+      <td>${staff.staffUserName}</td>
+      <td>${staff.staffPassword}</td>
+      <td>${staff.staffFullName}</td>
+    `;
+  
+          // Append the row to the table
+          staffsTable.appendChild(row);
+        });
+        allStaffsInfo.appendChild(staffsTable)
+      } else {
+  
+        allStaffsInfo.innerHTML = data.message;
+      }
     } catch (error)  {
         allStaffsInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin nhân viên', error);
@@ -46,14 +65,36 @@ async function getStaffInfo(staffUserName) {
         })
         const data = await response.json();
         if (response.status === 200) {  
-            staffInfo.innerHTML = `  
-                                    <h3>Staff information</h3>
-                                    <p>Staff name: ${data.staffFullName}</p>
-                                    <p>Staff username: ${data.staffUserName}</p>
-                                    <p>Staff password: ${data.staffPassword}`;
-        } else {
-            staffInfo.innerHTML = data.message;
-        }
+            staffInfo.innerHTML = ''; 
+
+            const staffsTable = document.createElement('table');
+            staffsTable.setAttribute('id', 'Table')
+      
+            // Create table header
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+              <th>Staff User Name</th>
+              <th>Password</th>
+              <th>Staff Name</th>`;
+      
+              staffsTable.appendChild(headerRow);
+              
+                // Create a new row for each staff
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${data.staffUserName}</td>
+                <td>${data.staffPassword}</td>
+                <td>${data.staffFullName}</td>
+            `;
+        
+                // Append the row to the table
+                staffsTable.appendChild(row);
+              
+              staffInfo.appendChild(staffsTable)
+            } else {
+        
+              staffInfo.innerHTML = data.message;
+            }
     } catch (error) {
         staffInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin nhân viên', error);
@@ -142,17 +183,35 @@ async function getAllDentistsInfo() {
         const data = await response.json();
         if (response.status === 200) {            
             allDentistsInfo.innerHTML = ''; 
-            data.forEach(dentist => {
-            const allDentistsDetails = document.createElement('p');
-            allDentistsDetails.textContent = `
-                                            Dentist name: ${dentist.dentistFullName}, 
-                                            Dentist username: ${dentist.dentistUserName},
-                                            Password: ${dentist.dentistPassword}`; 
-            allDentistsInfo.appendChild(allDentistsDetails);
-            });
-        } else {
-            allDentistsInfo.innerHTML = data.message;
-        }
+            const dentistsTable = document.createElement('table');
+      dentistsTable.setAttribute('id', 'Table')
+
+      // Create table header
+      const headerRow = document.createElement('tr');
+      headerRow.innerHTML = `
+        <th>Dentist User Name</th>
+        <th>Password</th>
+        <th>Dentist Name</th>`;
+
+        dentistsTable.appendChild(headerRow);
+        
+        data.forEach(staff => {
+          // Create a new row for each dentist
+          const row = document.createElement('tr');
+          row.innerHTML = `
+      <td>${staff.dentistUserName}</td>
+      <td>${staff.dentistPassword}</td>
+      <td>${staff.dentistFullName}</td>
+    `;
+  
+          // Append the row to the table
+          dentistsTable.appendChild(row);
+        });
+        allDentistsInfo.appendChild(dentistsTable)
+      } else {
+  
+        allDentistsInfo.innerHTML = data.message;
+      }
     } catch (error)  {
         allDentistsInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin nha sĩ', error);
@@ -171,14 +230,38 @@ async function getDentistInfo(dentistUserName) {
         })
         const data = await response.json();
         if (response.status === 200) {  
-            dentistInfo.innerHTML = `  
-                                    <h3>Dentist information</h3>
-                                    <p>Dentist name: ${data.dentistFullName}</p>
-                                    <p>Dentist username: ${data.dentistUserName}</p>
-                                    <p>Dentist password: ${data.dentistPassword}`;
-        } else {
-            dentistInfo.innerHTML = data.message;
-        }
+            dentistInfo.innerHTML = ''; 
+             
+
+            const dentistsTable = document.createElement('table');
+            dentistsTable.setAttribute('id', 'Table')
+      
+            // Create table header
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+              <th>Dentist User Name</th>
+              <th>Password</th>
+              <th>Dentist Name</th>`;
+      
+              dentistsTable.appendChild(headerRow);
+              
+              
+                // Create a new row for each dentist
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${data.dentistUserName}</td>
+            <td>${data.dentistPassword}</td>
+            <td>${data.dentistFullName}</td>
+          `;
+        
+                // Append the row to the table
+                dentistsTable.appendChild(row);
+              
+              dentistInfo.appendChild(dentistsTable)
+            } else {
+        
+              dentistInfo.innerHTML = data.message;
+            }
     } catch (error) {
         dentistInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin nha sĩ', error);
@@ -265,23 +348,39 @@ async function getAllDrugsInfo() {
         const data = await response.json();
         if (response.status === 200) {            
             allDrugsInfo.innerHTML = ''; 
-            data.forEach(drug => {
-            const date = new Date(drug.expiredDate);
-            const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-            const allDrugsDetails = document.createElement('p');
-            allDrugsDetails.textContent = `
-                                            Drug Id: ${drug.drugId},
-                                            Drug name: ${drug.drugName},
-                                            Unit: ${drug.unit},
-                                            Indication: ${drug.indication}, 
-                                            Expired date: ${formattedDate},
-                                            Stock number: ${drug.stockNumber},
-                                            Price: ${drug.price}$`; 
-            allDrugsInfo.appendChild(allDrugsDetails);
-            });
-        } else {
-            allDrugsInfo.innerHTML = data.message;
-        }
+            const drugsTable = document.createElement('table');
+            drugsTable.setAttribute('id', 'Table')
+      
+            // Create table header
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+              <th>Drug ID</th>
+              <th>Drug Name</th>
+              <th>Indication</th>
+              <th>Stock Number</th>
+              <th>Price</th>`;
+      
+              drugsTable.appendChild(headerRow);
+              
+              data.forEach(staff => {
+                // Create a new row for each staff
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${staff.drugId}</td>
+            <td>${staff.drugName}</td>
+            <td>${staff.indication}</td>
+            <td>${staff.stockNumber}</td>
+            <td>${staff.price + "$"}</td>
+          `;
+        
+                // Append the row to the table
+                drugsTable.appendChild(row);
+              });
+              allDrugsInfo.appendChild(drugsTable)
+            } else {
+        
+              allDrugsInfo.innerHTML = data.message;
+            }
     } catch (error)  {
         allDrugsInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin thuốc', error);
@@ -300,20 +399,40 @@ async function getDrugInfo(drugId) {
         })
         const data = await response.json();
         if (response.status === 200) {  
-            const date = new Date(data.expiredDate);
-            const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-            drugInfo.innerHTML = `  
-                                    <h3>Drug information</h3>
-                                    <p>Drug Id: ${data.drugId}</p>
-                                    <p>Drug name: ${data.drugName}</p>
-                                    <p>Unit: ${data.unit}</p>
-                                    <p>Indication: ${data.indication}</p>
-                                    <p>Expired date: ${formattedDate}</p>
-                                    <p>Stock number: ${data.stockNumber}</p>
-                                    <p>Price: ${data.price}$</p>`;
-        } else {
-            drugInfo.innerHTML = data.message;
-        }
+            drugInfo.innerHTML = ''; 
+            const drugsTable = document.createElement('table');
+            drugsTable.setAttribute('id', 'Table')
+      
+            // Create table header
+            const headerRow = document.createElement('tr');
+            headerRow.innerHTML = `
+              <th>Drug ID</th>
+              <th>Drug Name</th>
+              <th>Indication</th>
+              <th>Stock Number</th>
+              <th>Price</th>`;
+      
+              drugsTable.appendChild(headerRow);
+              
+              
+                // Create a new row for each staff
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${data.drugId}</td>
+            <td>${data.drugName}</td>
+            <td>${data.indication}</td>
+            <td>${data.stockNumber}</td>
+            <td>${data.price + "$"}</td>
+          `;
+        
+                // Append the row to the table
+                drugsTable.appendChild(row);
+              
+              drugInfo.appendChild(drugsTable)
+            } else {
+        
+                drugInfo.innerHTML = data.message;
+            }
     } catch (error) {
         drugInfo.innerHTML = data.message;
         console.error('Có lỗi xảy ra khi lấy thông tin thuốc', error);
@@ -431,6 +550,20 @@ async function deleteExpiredDrugs() {
         console.error('Có lỗi xảy ra', error);
     }
 }
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
 module.exports = { getAllStaffsInfo, getStaffInfo, updateStaffInfo, addStaffInfo, deleteStaffInfo }
 module.exports = { getAllDentistsInfo, getDentistInfo, updateDentistInfo, addDentistInfo, deleteDentistInfo};
