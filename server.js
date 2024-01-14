@@ -53,17 +53,19 @@ app.post('/getPatientInfo', async function(req, res) {
 });
   
 app.post('/updatePatientInfo', async function(req, res){
-  const { enterPatientPhoneNumber, patientFullName, updatePatientPhoneNumber,  patientPassword, patientDateOfBirth, patientAddress } = req.body;
+  const { patientFullName, patientPhoneNumber,  patientPassword, patientDateOfBirth, patientAddress } = req.body;
   const pool = await conn;
   // console.log(enterPatientPhoneNumber, patientFullName, updatePatientPhoneNumber,  patientPassword, patientDateOfBirth, patientAddress);
   const sqlString = `
+  UPDATE Account password  = '${patientPassword}'
+  WHERE username  = '${patientPhoneNumber}'
+  
   UPDATE Patient 
   SET patientFullName = '${patientFullName}',
-      patientPhoneNumber = '${updatePatientPhoneNumber}',
       patientPassword = '${patientPassword}',
       patientDateOfBirth = '${patientDateOfBirth}',
       patientAddress = '${patientAddress}'                         
-  WHERE patientPhoneNumber = '${enterPatientPhoneNumber}'`;
+  WHERE patientPhoneNumber = '${patientPhoneNumber}'`;
   try {
     const request = pool.request();
     const result = await request.query(sqlString);
@@ -164,14 +166,17 @@ app.post('/getStaffInfo', async function(req, res) {
 });
   
 app.post('/updateStaffInfo', async function(req, res){
-  const { enterStaffUserName, staffFullName, updateStaffUserName,  staffPassword} = req.body;
+  const {  staffFullName, staffUserName,  staffPassword } = req.body;
   const pool = await conn;
   const sqlString = `
+
+  UPDATE Account SET password  = '${staffPassword}'
+  WHERE username  = '${staffUserName}'
+  
   UPDATE Staff 
   SET staffFullName = '${staffFullName}',
-      staffUserName = '${updateStaffUserName}',
       staffPassword = '${staffPassword}'                         
-  WHERE staffUserName = '${enterStaffUserName}'`;
+  WHERE staffUserName = '${staffUserName}'`;
   try {
     const request = pool.request();
     const result = await request.query(sqlString);
@@ -215,8 +220,9 @@ app.delete('/deleteStaffInfo/:staffUserName', async function(req, res){
   const staffUserName  = req.params.staffUserName;
   const pool = await conn;
   const sqlString = `
+  DELETE FROM Staff WHERE staffUserName = '${staffUserName}'
   DELETE FROM Account WHERE username = '${staffUserName}'
-  DELETE FROM Staff WHERE staffUserName = '${staffUserName}'`;
+  `;
   try {
     const request = pool.request();
     const result = await request.query(sqlString);
@@ -271,14 +277,16 @@ app.post('/getDentistInfo', async function(req, res) {
 });
   
 app.post('/updateDentistInfo', async function(req, res){
-  const { enterDentistUserName, dentistFullName, updateDentistUserName,  dentistPassword} = req.body;
+  const { dentistFullName, dentistUserName,  dentistPassword} = req.body;
   const pool = await conn;
   const sqlString = `
+  UPDATE Account SET password  = '${dentistPassword}'
+  WHERE username = '${dentistUserName}'
+
   UPDATE Dentist 
   SET dentistFullName = '${dentistFullName}',
-      dentistUserName = '${updateDentistUserName}',
-      dentistPassword = '${dentistPassword}'                         
-  WHERE dentistUserName = '${enterDentistUserName}'`;
+      dentistPassword = '${dentistPassword}'                       
+  WHERE dentistUserName = '${dentistUserName}'`;
   try {
     const request = pool.request();
     const result = await request.query(sqlString);
@@ -322,8 +330,9 @@ app.delete('/deleteDentistInfo/:dentistUserName', async function(req, res){
   const dentistUserName  = req.params.dentistUserName;
   const pool = await conn;
   const sqlString = `
-  DELETE FROM Account WHERE username = '${dentistUserName}'
-  DELETE FROM Dentist WHERE dentistUserName = '${dentistUserName}'`;
+  
+  DELETE FROM Dentist WHERE dentistUserName = '${dentistUserName}'
+  DELETE FROM Account WHERE username = '${dentistUserName}'`;
   try {
     const request = pool.request();
     const result = await request.query(sqlString);
@@ -462,8 +471,7 @@ app.delete('/deleteDrugInfo/:drugId', async function(req, res){
       res.status(500).json({ message: 'Thuốc không tồn tại' });
     }
   } catch (error) {
-    console.error('Có lỗi xảy ra khi xóa thông tin thuốc', error);
-    res.status(500).json({ message: 'Có lỗi xảy ra khi xóa thông tin thuốc' });
+    res.status(500).json({ message: 'Đã tồn tại trong medical record' });
   }
 });
 
