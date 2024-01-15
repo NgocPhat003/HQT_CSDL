@@ -7,8 +7,8 @@ const conn = require('connect');
 const config = {
   user: 'sa',
   password: '123456',
-  server: 'DESKTOP-8ID1E1D',
-  database: 'QLNhaKhoa',
+  server: 'LAPTOP-UFHV2KPG',
+  database: 'QLNhaKhoa1',
   options: {
     trustedConnection: true,
     trustServerCertificate: true,

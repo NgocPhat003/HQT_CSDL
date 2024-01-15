@@ -83,8 +83,7 @@ async function getAllAppointmentsInfo(patientPhoneNumber) {
     const getAllAppointmentsInfoResult = document.getElementById('getAllAppointmentsInfoResult');
     getAllAppointmentsInfoResult.innerHTML = '';
     if (response.status === 200) {
-      // Assuming you have a table element with the id 'appointmentsTable' in your HTML
-      const appointmentsTable = document.createElement('appointmentsTable');
+      const appointmentsTable = document.createElement('table');
       appointmentsTable.id = 'appointmentsTable'
 
       // Create table header

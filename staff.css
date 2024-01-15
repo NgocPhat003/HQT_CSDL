@@ -128,7 +128,7 @@ button:hover {
   cursor: pointer;
 }
 
-#patientsTable {
+#patientsTable, #appointmentsTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -136,24 +136,24 @@ button:hover {
 }
 
 #patientsTable th,
-#patientsTable td {
+#patientsTable td, #appointmentsTable th, #appointmentsTable td {
   border: 1px solid #009688;
   padding: 8px;
   text-align: left;
 }
 
-#patientsTable th {
+#patientsTable th, #appointmentsTable th {
   background-color: #009688;
   color: white;
 }
 
-#patientsTable td {
+#patientsTable td, #appointmentsTable td {
   background-color: #f2f2f2;
   /* Optional: Add a background color for alternate rows */
 }
 
 /* Optional: Add hover effect on rows */
-#patientsTable tr:hover {
+#patientsTable tr:hover, #appointmentsTable tr:hover {
   background-color: #e0e0e0;
 }
 

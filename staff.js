@@ -77,7 +77,7 @@ async function getPatientInfo(patientPhoneNumber) {
       const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
 
       const patientTable = document.createElement('table');
-      patientTable.setAttribute('id', 'patientsTable');
+      patientTable.setAttribute('id', 'appointmentsTable');
 
       const headerRow = document.createElement('tr');
       headerRow.innerHTML = `
